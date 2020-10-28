@@ -44,6 +44,11 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="upload">Upload</label>
+            <input type="file" class="form-control" id="file" #userPhoto (change)="onFileSelected($event)" name="image"
+              autocomplete="off" />
+          </div>
+          <div class="form-group">
             <button class="btn btn-primary" *ngIf="!isUpdated">Register</button>
             <button class="btn btn-primary" *ngIf="isUpdated">Update</button>
 
@@ -58,21 +63,25 @@
   <table class="table table-fixed">
     <thead>
       <tr>
-        <th scope="col" class="col-3">First Name</th>
-        <th scope="col" class="col-3">Last Name</th>
-        <th scope="col" class="col-4">Email</th>
+        <th scope="col" class="col-2">First Name</th>
+        <th scope="col" class="col-2">Last Name</th>
+        <th scope="col" class="col-3">Email</th>
         <th scope="col" class="col-1">Edit</th>
         <th scope="col" class="col-1">Delete</th>
+        <th scope="col" class="col-3">Image</th>
 
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let tableData of tableVal">
-        <td class="col-3">{{tableData.firstName}}</td>
-        <td class="col-3">{{tableData.lastName}}</td>
-        <td class="col-4">{{tableData.email}}</td>
+        <td class="col-2">{{tableData.firstName}}</td>
+        <td class="col-2">{{tableData.lastName}}</td>
+        <td class="col-3">{{tableData.email}}</td>
         <td class="col-1" (click)="editEmployee(tableData)">Edit</td>
         <td class="col-1" (click)="deleteEmployee(tableData.id)">Delete</td>
+        <td class="col-3">
+          <img style="display:block;" width="50%" height="50%" [src]="tableData.imgUrl" />
+        </td>
 
       </tr>
     </tbody>
